@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Michaela (Mich) Bocheva</title>
+    <link rel="icon" type="image/jpeg" href="TransparentGabor_Figures.jpg"> <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #000000; /* Changed background to pure black */
+            color: #334155; /* Dark slate gray text for general body content */
+        }
+        /* The .container class is now only for the main content sections */
+        .container {
+            max-width: 900px; /* Main content container width (e.g., for Home, Pubs, Paintings sections) */
+            margin: 0 auto;
+            padding: 1.5rem; /* Slightly reduced padding for tighter look */
+        }
+        .header-nav {
+            background-image: url('particles.gif'); /* Using blueOrb.gif as background */
+            background-size: 50% auto; /* GIF background size set to 30% */
+            background-position: calc(49% - 30px) center; /* Center the GIF */
+            background-repeat: no-repeat; /* Prevent tiling */
+            position: relative; /* Needed for positioning content and overlay */
+            padding: 1.5rem 0; /* Slightly more padding for better visual */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            min-height: 120px; /* Ensure header has enough height to show GIF */
+            display: flex; /* Use flexbox for centering content */
+            align-items: center; /* Center content vertically */
+            justify-content: center; /* Center content horizontally */
+        }
+        /* Semi-transparent overlay for text readability over GIF */
+        .header-nav::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.3); /* Dark semi-transparent overlay */
+            z-index: 1; /* Ensure overlay is above background but below content */
+        }
+        .header-nav nav {
+            position: relative; /* Ensure nav content is above the overlay */
+            z-index: 2;
+            width: 100%; /* Make nav take full width of its parent (header-nav) */
+            max-width: 900px; /* Constrain header content to 900px as before */
+            margin: 0 auto; /* Center the header content */
+            padding: 0 1.5rem; /* Reverted padding to original shorthand */
+            display: flex; /* Re-apply flex for nav items */
+            justify-content: space-between; /* Pushes name to left, nav links to right */
+            align-items: center;
+        }
+        .header-nav .text-2xl,
+        .header-nav .nav-link {
+            color: #ffffff; /* White text for contrast */
+            /* Blue outline for text */
+            text-shadow:
+                -1px -1px 0 #1e3a8a,
+                1px -1px 0 #1e3a8a,
+                -1px 1px 0 #1e3a8a,
+                1px 1px 0 #1e3a8a;
+            white-space: nowrap; /* Ensure name stays on one line */
+        }
+        .nav-link {
+            font-weight: 500;
+            padding: 0.5rem 0.75rem; /* Adjusted padding for narrower nav */
+            border-radius: 0.375rem;
+            transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+            font-size: 1.0rem; /* Slightly smaller font for nav links */
+        }
+        .nav-link:hover {
+            background-color: rgba(255, 255, 255, 0.2); /* Light transparent white on hover */
+            color: #ffffff;
+        }
+        .active-nav-link {
+            background-color: rgba(255, 255, 255, 0.3); /* Slightly more opaque transparent white for active */
+            color: #ffffff;
+        }
+        .section {
+            background-color: #ffffff;
+            border-radius: 0.75rem;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            text-align: center; /* Center content within the section by default */
+            max-width: 900px; /* Apply compact width here */
+            margin-left: auto; /* Center the section */
+            margin-right: auto; /* Center the section */
+        }
+        .footer {
+            background-color: #1e3a8a; /* Darker blue for footer */
+            color: #dbeafe; /* Light blue text for footer */
+            padding: 1.5rem 0;
+        }
+        .quote {
+            font-style: italic;
+            color: #64748b; /* Grayish text for quotes */
+            border-left: 4px solid #93c5fd; /* Light blue border */
+            padding-left: 1rem;
+            margin-bottom: 1rem;
+            text-align: left; /* Keep quotes left-aligned */
+        }
+        .image-and-caption-container { /* New container for image and its caption */
+            width: 190px; 
+            margin-top: 1rem; /* Adjust margin as needed */
+            margin-left: 2rem; /* Matches md:ml-8 from original flex setup */
+            flex-shrink: 0; /* Prevent from shrinking */
+            text-align: left; /* Align content inside to the left */
+        }
+        .image-and-caption-container img {
+            width: 100%;
+            height: 190px;
+            object-fit: cover; /* Cover the area, cropping if necessary */
+            border-radius: 0.75rem; /* Apply border radius to the image */
+        }
+        /* Added for publication spacing */
+        .publication-entry {
+            margin-bottom: 1rem; /* Space after each paper entry */
+            text-align: left; /* Ensure text within entry is left-aligned */
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header-nav">
+        <nav>
+            <div class="text-2xl font-bold">Michaela Bocheva</div>
+            <div class="flex space-x-2">
+                <a href="#home" class="nav-link active-nav-link" onclick="showPage('home')">Home</a>
+                <a href="#publications" class="nav-link" onclick="showPage('publications')">Publications</a>
+                <a href="#paintings" class="nav-link" onclick="showPage('paintings')">Paintings</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="mt-8">
+
+        <section id="home" class="page-content section">
+            <div class="flex flex-col md:flex-row items-start">
+                <div class="flex-grow text-lg leading-relaxed mb-6 text-left">
+                    Hi — my name’s Michaela (Mich) and I am a cognitive science PhD student at Yale. I study the role of informational terms (such as disorder and intrinsic randomness) in perceptual decisions. My interests include information theory, optimal disorder, perception of randomness, and how people weigh sensory evidence in their perceptual decisions.
+                </div>
+                <div class="text-white text-lg text-left w-full md:w-auto md:order-first mb-4 md:mb-0">
+                    Михаела Бочева
+                </div>
+                <div class="image-and-caption-container md:mt-0">
+                    <img src="controllerFailure.png" alt="Michaela Bocheva Profile Picture">
+                    <div style="font-size: 0.75rem; font-style: italic; margin-top: 0.5rem;">Me at my undergrad thesis defense, distressed by the reality of multimedia failure</div>
+                </div>
+            </div>
+
+            <div class="mt-8">
+                <blockquote class="quote">
+                    "God does not play dice."
+                </blockquote>
+                <blockquote class="quote">
+                    "When I wonder why<br>
+                    What's never been never been so<br>
+                    We would lie when we say<br>
+                    "yes, you know we all love you"<br>
+                    What's never been never been so<br>
+                    Hell, we're nowhere now."
+                </blockquote>
+            </div>
+
+            <div class="mt-8 text-lg text-center">
+                Check out our lab’s website at <a href="https://perception.yale.edu/" target="_blank" class="text-blue-600 hover:underline font-medium">https://perception.yale.edu/</a>
+            </div>
+
+            <div class="mt-12 flex justify-center">
+                <div class="rounded-lg overflow-hidden shadow-md" style="max-width: 400px;">
+                    <img src="TransparentGabor_Figures.jpg" alt="Gabor Figure" class="w-full h-auto object-cover rounded-lg">
+                </div>
+            </div>
+        </section>
+
+        <section id="publications" class="page-content section hidden">
+            <h2 class="text-3xl font-bold mb-4 text-gray-900 text-left">Publications</h2>
+            <div class="text-gray-700 text-left mx-auto" style="max-width: fit-content;">
+                <p style="font-style: italic; font-size: 1.25rem; margin-bottom: 0.5rem;">Under review</p>
+                <div class="publication-entry">
+                    <p><b>Bocheva, M.</b>, Xue, K., & Rahnev, D. (2025). Serial effects in choice and confidence modulate each other: Evidence from 26 experiments. <a href="https://doi.org/10.31219/osf.io/rzus6_v1" target="_blank" class="text-blue-600 hover:underline">https://doi.org/10.31219/osf.io/rzus6_v1</a></p>
+                </div>
+                <div class="publication-entry">
+                    <p><b>Bocheva, M.</b>, & Rahnev, D. (2024). Switching the motor response weakens confidence serial dependence. <a href="https://doi.org/10.31234/osf.io/3d5ge_v2" target="_blank" class="text-blue-600 hover:underline">https://doi.org/10.31234/osf.io/3d5ge_v2</a></p>
+                </div>
+                <div class="publication-entry">
+                    <p><b>Bocheva, M.</b> (2025). Shannon entropy in visual perception predicts priming effects. <a href="https://doi.org/10.31234/osf.io/fn5ws_v2" target="_blank" class="text-blue-600 hover:underline">https://doi.org/10.31234/osf.io/fn5ws_v2</a></p>
+                </div>
+                <p style="font-style: italic; font-size: 1.25rem; margin-top: 1rem; margin-bottom: 0.5rem;">2024</p>
+                <div class="publication-entry">
+                    <p><b>Bocheva, M.</b> (2024). Structural disorder facilitates future memory decisions. <em>Proceedings B</em>, 291(2034), 20242154. <a href="https://doi.org/10.1098/rspb.2024.2154" target="_blank" class="text-blue-600 hover:underline">https://doi.org/10.1098/rspb.2024.2154</a></p>
+                </div>
+            </div>
+        </section>
+
+        <section id="paintings" class="page-content section hidden">
+            <h2 class="text-3xl font-bold mb-6 text-gray-900 text-left">Paintings</h2>
+            <p class="text-lg leading-relaxed text-gray-700 mb-6 text-left">
+        I enjoy painting in my spare time. This is some of my work. On occasion (and on serious demand), I might sell to an interested party.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center">
+                <script>
+                    for (let i = 1; i <= 18; i++) {
+                        document.write(`
+                            <div>
+                                <img src="Paintings/${i}.jpg" alt="Painting ${i}" class="w-full h-auto object-cover rounded-md">
+                            </div>
+                        `);
+                    }
+                </script>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer mt-12 text-center">
+        <div class="container">
+            <p class="text-sm">100 College Street, New Haven, CT, USA</p>
+            <p class="text-sm">michaela.bocheva@yale.edu</p>
+        </div>
+    </footer>
+
+    <script>
+        // Function to show the selected page and update active navigation link
+        function showPage(pageId) {
+            // Hide all page content sections
+            document.querySelectorAll('.page-content').forEach(section => {
+                section.classList.add('hidden');
+            });
+
+            // Show the selected page
+            document.getElementById(pageId).classList.remove('hidden');
+
+            // Update active navigation link
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active-nav-link');
+            });
+            document.querySelector(`a[href="#${pageId}"]`).classList.add('active-nav-link');
+        }
+
+        // Initialize the page to show 'home' on load
+        document.addEventListener('DOMContentLoaded', () => {
+            showPage('home');
+        });
+    </script>
+</body>
+</html>
