@@ -55,7 +55,7 @@
             justify-content: space-between;
             align-items: center;
         }
-        .header-nav .text-2xl,
+        .header-nav .text-4xl,
         .header-nav .nav-link {
             color: #ffffff;
             text-shadow:
@@ -142,7 +142,7 @@
 
     <header class="header-nav">
         <nav>
-            <div class="text-2xl font-bold">Michaela Bocheva</div>
+            <div class="text-4xl font-bold">Michaela Bocheva</div>
             <div class="flex space-x-2">
                 <a href="#home" class="nav-link active-nav-link" onclick="showPage('home')">Home</a>
                 <a href="#publications" class="nav-link" onclick="showPage('publications')">Publications</a>
@@ -237,11 +237,11 @@
     <footer class="footer text-center">
         <div class="container">
             <p class="text-sm">100 College Street, New Haven, CT, USA</p>
-            <p class="text-sm">michaela.bocheva@yale.edu</p>
+            <p class="text-sm"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="fa979399929b9f969bd4989599929f8c9bba839b969fd49f9e8f">[email&#160;protected]</a></p>
         </div>
     </footer>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         function showPage(pageId) {
             document.querySelectorAll('.page-content').forEach(section => {
                 section.classList.add('hidden');
@@ -250,12 +250,3 @@
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.classList.remove('active-nav-link');
             });
-            document.querySelector(`a[href="#${pageId}"]`).classList.add('active-nav-link');
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            showPage('home');
-        });
-    </script>
-</body>
-</html>
