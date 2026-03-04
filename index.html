@@ -250,3 +250,12 @@
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.classList.remove('active-nav-link');
             });
+            document.querySelector(`a[href="#${pageId}"]`).classList.add('active-nav-link');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            showPage('home');
+        });
+    </script>
+</body>
+</html>
