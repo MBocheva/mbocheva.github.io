@@ -144,9 +144,9 @@
         <nav>
             <div class="text-4xl font-bold">Michaela Bocheva</div>
             <div class="flex space-x-2">
-                <a href="#home" class="nav-link active-nav-link" onclick="showPage('home')">Home</a>
-                <a href="#publications" class="nav-link" onclick="showPage('publications')">Publications</a>
-                <a href="#paintings" class="nav-link" onclick="showPage('paintings')">Paintings</a>
+                <a href="javascript:void(0)" class="nav-link active-nav-link" onclick="showPage('home')">Home</a>
+                <a href="javascript:void(0)" class="nav-link" onclick="showPage('publications')">Publications</a>
+                <a href="javascript:void(0)" class="nav-link" onclick="showPage('paintings')">Paintings</a>
             </div>
         </nav>
     </header>
@@ -156,7 +156,7 @@
         <section id="home" class="page-content section">
             <div class="flex flex-col md:flex-row items-start">
                 <div class="flex-grow text-lg leading-relaxed mb-6 text-left">
-                    Hi — my name is Michaela and I'm a Yale PhD student in cognitive science. I study perception of randomness and disorder, in both vision and traditional statistical inference. 
+                    Hi — my name is Michaela and I'm a Yale PhD student in cognitive science. I study perception of randomness and disorder, in both vision and traditional statistical inference.<br> 
                     I'm specifically interested in how representations of structure and randomness diverge — and where they align.
                 </div>
                 <div class="text-white text-lg text-left w-full md:w-auto md:order-first mb-4 md:mb-0">
@@ -251,7 +251,8 @@
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.classList.remove('active-nav-link');
             });
-            document.querySelector(`a[href="#${pageId}"]`).classList.add('active-nav-link');
+            document.querySelector(`a[onclick="showPage('${pageId}')"]`).classList.add('active-nav-link');
+            window.scrollTo(0, 0);
         }
 
         document.addEventListener('DOMContentLoaded', () => {
