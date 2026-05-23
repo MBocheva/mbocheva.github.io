@@ -146,7 +146,6 @@
             <div class="flex space-x-2">
                 <a href="javascript:void(0)" class="nav-link active-nav-link" onclick="showPage('home')">Home</a>
                 <a href="javascript:void(0)" class="nav-link" onclick="showPage('publications')">Publications</a>
-                <a href="javascript:void(0)" class="nav-link" onclick="showPage('paintings')">Paintings</a>
             </div>
         </nav>
     </header>
@@ -214,25 +213,6 @@
         </div>
     </div>
 </section>
-
-
-        <section id="paintings" class="page-content section hidden">
-            <h2 class="text-3xl font-bold mb-6 text-gray-900 text-left">Paintings</h2>
-            <p class="text-lg leading-relaxed text-gray-700 mb-6 text-left">
-        I enjoy painting in my spare time. This is some of my work. On occasion (and on serious demand), I might sell to an interested party.
-            </p>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center">
-                <script>
-                    for (let i = 1; i <= 18; i++) {
-                        document.write(`
-                            <div>
-                                <img src="${i}.jpg" alt="Painting ${i}" class="w-full h-auto object-cover rounded-md">
-                            </div>
-                        `);
-                    }
-                </script>
-            </div>
-        </section>
 
     </main>
 
