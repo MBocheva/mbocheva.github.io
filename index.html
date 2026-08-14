@@ -2,34 +2,56 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Fixed viewport width: phones scale the whole layout down instead of reflowing it -->
+    <meta name="viewport" content="width=760">
     <title>Michaela Bocheva</title>
-    <link rel="icon" type="image/gif" href="particles.gif"> <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/gif" href="particles.gif">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
+        :root {
+            --layout-width: 760px;   /* white body + header + footer column */
+            --side-padding: 2rem;    /* 32px inner padding of the white body */
+            --image-width: 190px;    /* selfie column */
+            --image-gap: 2rem;       /* 32px gap between text and selfie */
+            --orb-width: 240px;      /* particles.gif — fixed px, sits in the
+                                        gap between the name and the nav links */
+            --header-height: 120px;
+            --header-shift: 20px;    /* pushes name, orb and page links down */
+            --paper: #faf7ed;        /* warm off-white for the body panels */
+        }
+
+        *, *::before, *::after { box-sizing: border-box; }
+
         body {
             font-family: 'Inter', sans-serif;
             background-color: #000000;
             color: #334155;
             min-height: 100vh;
+            min-width: var(--layout-width);  /* never squeeze the layout */
             display: flex;
             flex-direction: column;
             margin: 0;
         }
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 1.5rem;
+
+        /* Shared centered column: header nav, white sections, footer */
+        .layout-column {
+            width: var(--layout-width);
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: var(--side-padding);
+            padding-right: var(--side-padding);
         }
+
         .header-nav {
             background-image: url('particles.gif');
-            background-size: 50% auto;
-            background-position: center center;
+            background-size: var(--orb-width) auto;  /* fixed px, was 50% */
+            background-position: center calc(50% + var(--header-shift));
             background-repeat: no-repeat;
             position: relative;
             padding: 1.5rem 0;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-            min-height: 120px;
+            height: var(--header-height);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -47,13 +69,10 @@
         .header-nav nav {
             position: relative;
             z-index: 2;
-            width: 100%;
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            transform: translateY(var(--header-shift));
         }
         .header-nav .text-3xl,
         .header-nav .nav-link {
@@ -80,26 +99,57 @@
             background-color: rgba(255, 255, 255, 0.3);
             color: #ffffff;
         }
+
         .section {
-            background-color: #ffffff;
+            background-color: var(--paper);
             border-radius: 0.75rem;
-            padding: 2rem;
+            padding-top: var(--side-padding);
+            padding-bottom: var(--side-padding);
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             margin-bottom: 2rem;
-            text-align: center;
-            max-width: 900px;
-            margin-left: auto;
-            margin-right: auto;
+            text-align: left;
         }
-        main {
-            flex: 1;
-        }
+
+        main { flex: 1; }
+
         .footer {
             background-color: #1e3a8a;
             color: #dbeafe;
             padding: 1.5rem 0;
             margin-top: auto;
         }
+        .footer .layout-column { text-align: center; }
+
+        /* Intro row: text hard-left, selfie a fixed gap to its right */
+        .intro-row {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+        }
+        .intro-text {
+            width: calc(var(--layout-width)
+                        - 2 * var(--side-padding)
+                        - var(--image-gap)
+                        - var(--image-width));   /* 474px */
+            flex: 0 0 auto;
+            text-align: left;
+        }
+        .image-and-caption-container {
+            width: var(--image-width);
+            margin-left: var(--image-gap);
+            margin-top: 0;
+            flex-shrink: 0;
+            text-align: left;
+        }
+        .image-and-caption-container img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            border-radius: 0.75rem;
+        }
+
+        .paper-text { color: var(--paper); }
+
         .quote {
             font-style: italic;
             color: #64748b;
@@ -108,19 +158,6 @@
             margin-bottom: 1rem;
             text-align: left;
         }
-        .image-and-caption-container {
-            width: 190px; 
-            margin-top: 1rem;
-            margin-left: 2rem;
-            flex-shrink: 0;
-            text-align: left;
-        }
-        .image-and-caption-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain; 
-            border-radius: 0.75rem;
-        }
         .publication-entry {
             margin-bottom: 1rem;
             text-align: left;
@@ -128,20 +165,20 @@
     </style>
 
     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-EXK5JGHF0Z"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EXK5JGHF0Z"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
-  gtag('config', 'G-EXK5JGHF0Z');
-</script>
-    
+      gtag('config', 'G-EXK5JGHF0Z');
+    </script>
+
 </head>
 <body>
 
     <header class="header-nav">
-        <nav>
+        <nav class="layout-column">
             <div class="text-3xl font-bold">Michaela Bocheva</div>
             <div class="flex space-x-2">
                 <a href="javascript:void(0)" class="nav-link active-nav-link" onclick="showPage('home')">Home</a>
@@ -152,55 +189,52 @@
 
     <main class="mt-8">
 
-        <section id="home" class="page-content section">
-            <div class="flex flex-col md:flex-row items-start">
-                <div class="flex-grow text-lg leading-relaxed mb-6 text-left">
+        <section id="home" class="page-content section layout-column">
+            <div class="intro-row">
+                <div class="intro-text text-lg leading-relaxed mb-6">
+                    <div class="paper-text text-lg">Михаела Бочева</div>
                     Hi — my name is Michaela and I'm a Yale PhD student in cognitive science. I study perception of structure and randomness, in both vision and higher-order cognition.
                     <br><br>
                     I'm specifically interested in the nature of structure representations across various domains, such as low-level scene perception, agentic motion, and action.
                 </div>
-                <div class="text-white text-lg text-left w-full md:w-auto md:order-first mb-4 md:mb-0">
-                    Михаела Бочева
-                </div>
-                <div class="image-and-caption-container md:mt-0">
+                <div class="image-and-caption-container">
                     <img src="Selfie.png" alt="Picture">
                 </div>
             </div>
-
 
             <div class="mt-8 text-lg text-center">
                 Check out our lab's website at <a href="https://perception.yale.edu/" target="_blank" class="text-blue-600 hover:underline font-medium">https://perception.yale.edu/</a>
             </div>
         </section>
 
-<section id="publications" class="page-content section hidden">
-    <h2 class="text-3xl font-bold mb-4 text-gray-900 text-left">Publications</h2>
-    <div class="text-gray-700 text-left mx-auto" style="max-width: fit-content;">
-        <p style="font-style: italic; font-size: 1.25rem; margin-bottom: 0.5rem;">2026</p>
-        <div class="publication-entry">
-            <p><b>Bocheva, M.</b>, Xue, K., & Rahnev, D. (2026). Serial effects in choice and confidence modulate each other: Evidence from 26 experiments. <em>Cognition</em>, 276, 106643. <a href="https://doi.org/10.1016/j.cognition.2026.106643" target="_blank" class="text-blue-600 hover:underline">https://doi.org/10.1016/j.cognition.2026.106643</a></p>
-        </div>
-        <div class="publication-entry">
-            <p>Chen, S., <b>Bocheva, M.</b>, & Rahnev, D. (2026). Signatures proposed to index perceptual effects emerge in a purely cognitive task. <em>Psychonomic Bulletin & Review</em>, 33, 75. <a href="https://doi.org/10.3758/s13423-026-02863-1" target="_blank" class="text-blue-600 hover:underline">https://doi.org/10.3758/s13423-026-02863-1</a></p>
-        </div>
-        <p style="font-style: italic; font-size: 1.25rem; margin-top: 1rem; margin-bottom: 0.5rem;">2025</p>
-        <div class="publication-entry">
-            <p><b>Bocheva, M.</b> (2025). Shannon entropy in visual perception predicts priming effects. <em>Cognitive Systems Research</em>, 101395. <a href="https://doi.org/10.1016/j.cogsys.2025.101395" target="_blank" class="text-blue-600 hover:underline">https://doi.org/10.1016/j.cogsys.2025.101395</a></p>
-        </div>
-        <div class="publication-entry">
-            <p><b>Bocheva, M.</b>, & Rahnev, D. (2025). Switching the motor response weakens confidence serial dependence. <em>Psychonomic Bulletin & Review</em>, 1-9. <a href="https://doi.org/10.3758/s13423-025-02748-9" target="_blank" class="text-blue-600 hover:underline">https://doi.org/10.3758/s13423-025-02748-9</a></p>
-        </div>
-        <p style="font-style: italic; font-size: 1.25rem; margin-top: 1rem; margin-bottom: 0.5rem;">2024</p>
-        <div class="publication-entry">
-            <p><b>Bocheva, M.</b> (2024). Structural disorder facilitates future memory decisions. <em>Proceedings of the Royal Society B: Biological Sciences</em>, 291(2034), 20242154. <a href="https://doi.org/10.1098/rspb.2024.2154" target="_blank" class="text-blue-600 hover:underline">https://doi.org/10.1098/rspb.2024.2154</a></p>
-        </div>
-    </div>
-</section>
+        <section id="publications" class="page-content section layout-column hidden">
+            <h2 class="text-3xl font-bold mb-4 text-gray-900 text-left">Publications</h2>
+            <div class="text-gray-700 text-left">
+                <p style="font-style: italic; font-size: 1.25rem; margin-bottom: 0.5rem;">2026</p>
+                <div class="publication-entry">
+                    <p><b>Bocheva, M.</b>, Xue, K., &amp; Rahnev, D. (2026). Serial effects in choice and confidence modulate each other: Evidence from 26 experiments. <em>Cognition</em>, 276, 106643. <a href="https://doi.org/10.1016/j.cognition.2026.106643" target="_blank" class="text-blue-600 hover:underline">https://doi.org/10.1016/j.cognition.2026.106643</a></p>
+                </div>
+                <div class="publication-entry">
+                    <p>Chen, S., <b>Bocheva, M.</b>, &amp; Rahnev, D. (2026). Signatures proposed to index perceptual effects emerge in a purely cognitive task. <em>Psychonomic Bulletin &amp; Review</em>, 33, 75. <a href="https://doi.org/10.3758/s13423-026-02863-1" target="_blank" class="text-blue-600 hover:underline">https://doi.org/10.3758/s13423-026-02863-1</a></p>
+                </div>
+                <p style="font-style: italic; font-size: 1.25rem; margin-top: 1rem; margin-bottom: 0.5rem;">2025</p>
+                <div class="publication-entry">
+                    <p><b>Bocheva, M.</b> (2025). Shannon entropy in visual perception predicts priming effects. <em>Cognitive Systems Research</em>, 101395. <a href="https://doi.org/10.1016/j.cogsys.2025.101395" target="_blank" class="text-blue-600 hover:underline">https://doi.org/10.1016/j.cogsys.2025.101395</a></p>
+                </div>
+                <div class="publication-entry">
+                    <p><b>Bocheva, M.</b>, &amp; Rahnev, D. (2025). Switching the motor response weakens confidence serial dependence. <em>Psychonomic Bulletin &amp; Review</em>, 1-9. <a href="https://doi.org/10.3758/s13423-025-02748-9" target="_blank" class="text-blue-600 hover:underline">https://doi.org/10.3758/s13423-025-02748-9</a></p>
+                </div>
+                <p style="font-style: italic; font-size: 1.25rem; margin-top: 1rem; margin-bottom: 0.5rem;">2024</p>
+                <div class="publication-entry">
+                    <p><b>Bocheva, M.</b> (2024). Structural disorder facilitates future memory decisions. <em>Proceedings of the Royal Society B: Biological Sciences</em>, 291(2034), 20242154. <a href="https://doi.org/10.1098/rspb.2024.2154" target="_blank" class="text-blue-600 hover:underline">https://doi.org/10.1098/rspb.2024.2154</a></p>
+                </div>
+            </div>
+        </section>
 
     </main>
 
-    <footer class="footer text-center">
-        <div class="container">
+    <footer class="footer">
+        <div class="layout-column">
             <p class="text-sm">New Haven, CT, USA</p>
             <p class="text-sm">michaela.bocheva@yale.edu</p>
         </div>
