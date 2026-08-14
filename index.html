@@ -19,7 +19,8 @@
             --orb-offset-x: 0px;     /* nudge the orb left/right if needed */
             --header-height: 120px;
             --header-shift: 20px;    /* pushes name, orb and page links down */
-            --paper: #f8f3e2;        /* warm off-white for the body panels */
+            --paper: #f6eed0;        /* warm off-white for the body panels */
+            --header-text: #f7f3e8;  /* header text — off-white, less warm than the panel */
         }
 
         *, *::before, *::after { box-sizing: border-box; }
@@ -94,7 +95,7 @@
         }
         .header-nav .text-3xl,
         .header-nav .nav-link {
-            color: #ffffff;
+            color: var(--header-text);
             text-shadow:
                 -1px -1px 0 #1e3a8a,
                 1px -1px 0 #1e3a8a,
@@ -111,11 +112,11 @@
         }
         .nav-link:hover {
             background-color: rgba(255, 255, 255, 0.2);
-            color: #ffffff;
+            color: var(--header-text);
         }
         .active-nav-link {
             background-color: rgba(255, 255, 255, 0.3);
-            color: #ffffff;
+            color: var(--header-text);
         }
 
         .section {
@@ -140,7 +141,7 @@
         .intro-row {
             display: flex;
             flex-direction: row;
-            align-items: flex-start;
+            align-items: center;     /* text block centred against the selfie */
         }
         .intro-text {
             width: calc(var(--layout-width)
@@ -164,7 +165,12 @@
             border-radius: 0.75rem;
         }
 
-        .paper-text { color: var(--paper); }
+        /* Kept in the markup but takes no vertical space */
+        .paper-text {
+            color: var(--paper);
+            height: 0;
+            overflow: hidden;
+        }
 
         .quote {
             font-style: italic;
@@ -208,7 +214,7 @@
 
         <section id="home" class="page-content section layout-column">
             <div class="intro-row">
-                <div class="intro-text text-lg leading-relaxed mb-6">
+                <div class="intro-text text-lg leading-relaxed">
                     <div class="paper-text text-lg">Михаела Бочева</div>
                     Hi — my name is Michaela and I'm a Yale PhD student in cognitive science. I study perception of structure and randomness, in both vision and higher-order cognition.
                     <br><br>
