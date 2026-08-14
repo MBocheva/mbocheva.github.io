@@ -14,11 +14,12 @@
             --side-padding: 2rem;    /* 32px inner padding of the white body */
             --image-width: 190px;    /* selfie column */
             --image-gap: 2rem;       /* 32px gap between text and selfie */
-            --orb-width: 240px;      /* particles.gif — fixed px, sits in the
-                                        gap between the name and the nav links */
+            --orb-width: 320px;      /* particles.gif — fixed px, spills below
+                                        the header and behind the body panel */
+            --orb-offset-x: 0px;     /* nudge the orb left/right if needed */
             --header-height: 120px;
             --header-shift: 20px;    /* pushes name, orb and page links down */
-            --paper: #faf7ed;        /* warm off-white for the body panels */
+            --paper: #f8f3e2;        /* warm off-white for the body panels */
         }
 
         *, *::before, *::after { box-sizing: border-box; }
@@ -44,17 +45,26 @@
         }
 
         .header-nav {
-            background-image: url('particles.gif');
-            background-size: var(--orb-width) auto;  /* fixed px, was 50% */
-            background-position: center calc(50% + var(--header-shift));
-            background-repeat: no-repeat;
             position: relative;
+            z-index: 0;              /* keeps the orb behind the body panel */
+            overflow: visible;       /* lets the orb spill past the header */
             padding: 1.5rem 0;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
             height: var(--header-height);
             display: flex;
             align-items: center;
             justify-content: center;
+        }
+        .orb {
+            position: absolute;
+            left: calc(50% + var(--orb-offset-x));
+            top: calc(50% + var(--header-shift));
+            transform: translate(-50%, -50%);
+            width: var(--orb-width);
+            height: auto;
+            z-index: 1;
+            filter: brightness(0.7);  /* matches the old 30% dark overlay */
+            pointer-events: none;
         }
         .header-nav::before {
             content: '';
@@ -73,6 +83,14 @@
             justify-content: space-between;
             align-items: center;
             transform: translateY(var(--header-shift));
+            padding-left: 0;         /* flush with the panel's outer edges */
+            padding-right: 0;
+        }
+
+        main {
+            flex: 1;
+            position: relative;
+            z-index: 1;              /* body panel covers the orb's bottom */
         }
         .header-nav .text-3xl,
         .header-nav .nav-link {
@@ -109,8 +127,6 @@
             margin-bottom: 2rem;
             text-align: left;
         }
-
-        main { flex: 1; }
 
         .footer {
             background-color: #1e3a8a;
@@ -178,6 +194,7 @@
 <body>
 
     <header class="header-nav">
+        <img src="particles.gif" alt="" class="orb">
         <nav class="layout-column">
             <div class="text-3xl font-bold">Michaela Bocheva</div>
             <div class="flex space-x-2">
