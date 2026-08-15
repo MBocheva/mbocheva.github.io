@@ -188,7 +188,7 @@
         /* =============================================================
            MOBILE: touch devices only (< 760px AND a coarse
            pointer). A narrow desktop window keeps the fixed 760px
-           layout and scrolls horizontally.
+           layout and scrolls horizontally, as before.
            ============================================================= */
         @media (max-width: 759px) and (pointer: coarse) {
             body {
@@ -216,7 +216,7 @@
                 font-size: 1.75rem;
             }
             .orb {
-                width: 240px;
+                display: none;   /* no orb on phones */
             }
 
             /* Panels keep a small black margin instead of bleeding edge to edge */
