@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!-- Fixed viewport width: phones scale the whole layout down instead of reflowing it -->
-    <meta name="viewport" content="width=760">
+    <!-- Desktop layout is fixed at 760px; below that the mobile rules take over -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Michaela Bocheva</title>
     <link rel="icon" type="image/gif" href="particles.gif">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
@@ -183,6 +183,65 @@
         .publication-entry {
             margin-bottom: 1rem;
             text-align: left;
+        }
+
+        /* =============================================================
+           MOBILE: touch devices only (< 760px AND a coarse
+           pointer). A narrow desktop window keeps the fixed 760px
+           layout and scrolls horizontally.
+           ============================================================= */
+        @media (max-width: 759px) and (pointer: coarse) {
+            body {
+                min-width: 0;        /* release the fixed 760px floor */
+            }
+
+            .layout-column {
+                width: 100%;
+                padding-left: 1.25rem;
+                padding-right: 1.25rem;
+            }
+
+            /* Header: name stacks above the page links */
+            .header-nav {
+                height: auto;
+                padding: 1.25rem 0 1.1rem;
+            }
+            .header-nav nav {
+                flex-direction: column;
+                justify-content: center;
+                gap: 0.5rem;
+                transform: translateY(calc(var(--header-shift) / 2));
+            }
+            .header-nav .text-3xl {
+                font-size: 1.75rem;
+            }
+            .orb {
+                width: 240px;
+            }
+
+            /* Panels keep a small black margin instead of bleeding edge to edge */
+            .section.layout-column {
+                width: auto;
+                margin-left: 1rem;
+                margin-right: 1rem;
+                padding-left: 1.25rem;
+                padding-right: 1.25rem;
+                margin-bottom: 1.5rem;
+            }
+
+            /* Intro: selfie on top, text underneath, both full width */
+            .intro-row {
+                flex-direction: column;
+                align-items: center;
+            }
+            .intro-text {
+                width: 100%;
+            }
+            .image-and-caption-container {
+                order: -1;
+                margin-left: 0;
+                margin-bottom: 1.5rem;
+            }
         }
     </style>
 
