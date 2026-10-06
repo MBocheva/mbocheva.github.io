@@ -9,6 +9,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
+        @font-face {
+            font-family: "Latin Modern Math";
+            src: url("https://cdn.jsdelivr.net/gh/Explorer-cc/latinmodern-math-pua@main/latinmodern-math.otf") format("opentype");
+            font-weight: 100 900;    /* one cut; used for the name and the page links */
+            font-style: normal;
+            font-display: swap;
+        }
+
         :root {
             --layout-width: 760px;   /* white body + header + footer column */
             --side-padding: 2rem;    /* 32px inner padding of the white body */
@@ -95,6 +103,7 @@
         }
         .header-nav .text-3xl,
         .header-nav .nav-link {
+            font-family: "Latin Modern Math", serif;
             color: var(--header-text);
             text-shadow:
                 -1px -1px 0 #1e3a8a,
@@ -153,6 +162,11 @@
         }
         .examples {
             font-size: 0.85rem;          /* the surrounding text is 1.125rem */
+        }
+        /* Paragraphs under the examples span the whole panel and sit centered */
+        .under-examples {
+            margin-top: calc(1.125rem * 1.625); /* one blank line, same as <br><br> */
+            text-align: center;
         }
         .image-and-caption-container {
             width: var(--image-width);
@@ -284,14 +298,16 @@
                     (2) You may spontaneously see robust biological motion in ‘point-light’ displays, but such percepts disappear when those same points are spatially scrambled.
                     (3) You may spontaneously perceive one object chasing another, even when both are simple geometric shapes — but only if the motion of a ‘wolf’ is conditional on the motion of a ‘sheep’ in very particular ways.
                     Despite the variance in these phenomena, they all share the property of structure.</span>
-                    <br><br>
-                    I'm interested in the nature of structure in the mind. How is it represented? In what format is it stored? Over what units is it computed?
-                    <br><br>
-                    My long-term research program aims to explore structure representations as a domain-general phenomenon.
                 </div>
                 <div class="image-and-caption-container">
                     <img src="Selfie.png" alt="Picture">
                 </div>
+            </div>
+
+            <div class="under-examples text-lg leading-relaxed">
+                I'm interested in the nature of structure in the mind. How is it represented? In what format is it stored? Over what units is it computed?
+                <br><br>
+                My long-term research program aims to explore structure representations as a domain-general phenomenon.
             </div>
 
             <div class="mt-8 text-lg text-center">
