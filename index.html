@@ -141,7 +141,7 @@
         .intro-row {
             display: flex;
             flex-direction: row;
-            align-items: center;     /* text block centred against the selfie */
+            align-items: flex-start;     /* selfie stays at the top, however long the text is */
         }
         .intro-text {
             width: calc(var(--layout-width)
@@ -150,6 +150,9 @@
                         - var(--image-width));   /* 474px */
             flex: 0 0 auto;
             text-align: left;
+        }
+        .examples {
+            font-size: 1.05rem;          /* the surrounding text is 1.125rem */
         }
         .image-and-caption-container {
             width: var(--image-width);
@@ -277,10 +280,10 @@
                     <div class="paper-text text-lg">Михаела Бочева</div>
                     Hi — my name is Michaela and I'm currently a PhD student in cognitive science at Yale.
                     <br><br>
-                    Here are three foundational phenomena in visual cognition that at first blush might seem unrelated: (1) You are better able to discriminate two probe features when they lie on the same object, vs. different objects — even controlling for spatial proximity. 
-                    (2) You may spontaneously see robust biological motion in ‘point-light’ displays, but such percepts disappear when those same points are spatially scrambled. 
-                    (3) You may spontaneously perceive one object chasing another, even when both are simple geometric shapes — but only if the motion of a ‘wolf’ is conditional on the motion of a ‘sheep’ in very particular ways. 
-                    Despite the variance in these phenomena, they all share the property of structure.
+                    <span class="examples">Here are three foundational phenomena in visual cognition that at first blush might seem unrelated: (1) You are better able to discriminate two probe features when they lie on the same object, vs. different objects — even controlling for spatial proximity.
+                    (2) You may spontaneously see robust biological motion in ‘point-light’ displays, but such percepts disappear when those same points are spatially scrambled.
+                    (3) You may spontaneously perceive one object chasing another, even when both are simple geometric shapes — but only if the motion of a ‘wolf’ is conditional on the motion of a ‘sheep’ in very particular ways.
+                    Despite the variance in these phenomena, they all share the property of structure.</span>
                     <br><br>
                     I'm interested in the nature of structure in the mind. How is it represented? In what format is it stored? Over what units is it computed?
                     <br><br>
