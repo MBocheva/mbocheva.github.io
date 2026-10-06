@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Michaela Bocheva</title>
     <link rel="icon" type="image/gif" href="particles.gif">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @font-face {
@@ -30,13 +29,14 @@
             --paper: #f6eed0;        /* warm off-white for the body panels */
             --header-text: #f7f3e8;  /* header text — off-white, less warm than the panel */
             --line: 1.35;
-            --paragraph-gap: 0.5rem; /* used to be a full blank line from <br><br> */
+            --paragraph-gap: 0.5rem;
         }
 
         *, *::before, *::after { box-sizing: border-box; }
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: "Latin Modern Math", serif;
+            font-synthesis: none;
             line-height: var(--line);
             background-color: #000000;
             color: #334155;
@@ -170,9 +170,9 @@
         .paragraph-gap {
             height: var(--paragraph-gap);
         }
-        /* Paragraphs under the examples span the whole panel and sit centered */
+        /* One blank line under the examples, same as the old <br><br> */
         .under-examples {
-            margin-top: var(--paragraph-gap);
+            margin-top: calc(1.125rem * var(--line));
             text-align: center;
         }
         .image-and-caption-container {
