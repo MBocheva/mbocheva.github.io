@@ -6,13 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Michaela Bocheva</title>
     <link rel="icon" type="image/gif" href="particles.gif">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @font-face {
             font-family: "Latin Modern Math";
             src: url("https://cdn.jsdelivr.net/gh/Explorer-cc/latinmodern-math-pua@main/latinmodern-math.otf") format("opentype");
-            font-weight: 400;
+            font-weight: 100 900;    /* the real single cut; bold is not faked */
             font-style: normal;
             font-display: swap;
         }
@@ -29,14 +29,15 @@
             --header-shift: 20px;    /* pushes name, orb and page links down */
             --paper: #f6eed0;        /* warm off-white for the body panels */
             --header-text: #f7f3e8;  /* header text — off-white, less warm than the panel */
+            --line: 1.35;
+            --paragraph-gap: 0.5rem; /* used to be a full blank line from <br><br> */
         }
 
         *, *::before, *::after { box-sizing: border-box; }
 
         body {
             font-family: 'Inter', sans-serif;
-            font-weight: 500;
-            line-height: 1.35;
+            line-height: var(--line);
             background-color: #000000;
             color: #334155;
             min-height: 100vh;
@@ -106,7 +107,7 @@
         .header-nav .text-3xl,
         .header-nav .nav-link {
             font-family: "Latin Modern Math", serif;
-            font-synthesis: weight;
+            font-synthesis: none;
             color: var(--header-text);
             text-shadow:
                 -1px -1px 0 #1e3a8a,
@@ -116,7 +117,7 @@
             white-space: nowrap;
         }
         .nav-link {
-            font-weight: 600;
+            font-weight: 500;
             padding: 0.5rem 0.75rem;
             border-radius: 0.375rem;
             transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
@@ -166,9 +167,12 @@
         .examples {
             font-size: 0.85rem;          /* the surrounding text is 1.125rem */
         }
+        .paragraph-gap {
+            height: var(--paragraph-gap);
+        }
         /* Paragraphs under the examples span the whole panel and sit centered */
         .under-examples {
-            margin-top: calc(1.125rem * 1.35); /* one blank line */
+            margin-top: var(--paragraph-gap);
             text-align: center;
         }
         .image-and-caption-container {
@@ -296,7 +300,7 @@
                 <div class="intro-text text-lg">
                     <div class="paper-text text-lg">Михаела Бочева</div>
                     Hi — my name is Michaela, and I'm currently a PhD student in cognitive science at Yale.
-                    <br><br>
+                    <div class="paragraph-gap"></div>
                     <span class="examples">Here are three foundational phenomena in visual cognition that at first blush might seem unrelated: (1) You are better able to discriminate two probe features when they lie on the same object, vs. different objects — even controlling for spatial proximity.
                     (2) You may spontaneously see robust biological motion in ‘point-light’ displays, but such percepts disappear when those same points are spatially scrambled.
                     (3) You may spontaneously perceive one object chasing another, even when both are simple geometric shapes — but only if the motion of a ‘wolf’ is conditional on the motion of a ‘sheep’ in very particular ways.
@@ -309,7 +313,7 @@
 
             <div class="under-examples text-lg">
                 I'm interested in the nature of structure in the mind. How is it represented? In what format is it stored? Over what units is it computed?
-                <br><br>
+                <div class="paragraph-gap"></div>
                 My long-term research program aims to explore structure representations as a domain-general phenomenon.
             </div>
 
