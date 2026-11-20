@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!-- Desktop layout is fixed at 760px; below that the mobile rules take over -->
+    <!-- Through 1600px the desktop layout is the 760px design.
+         Wider windows scale the whole page. Phones use the mobile rules. -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Michaela Bocheva</title>
     <link rel="icon" type="image/gif" href="particles.gif">
@@ -16,16 +17,25 @@
             font-display: swap;
         }
 
+        /* 16px keeps the 760px design through a 1600px-wide window.
+           Past that, type, column, photo, and orb grow together
+           (the column is 47.5rem, so 47.5% of the window), up to 2×. */
+        html {
+            -webkit-text-size-adjust: 100%;
+            text-size-adjust: 100%;
+            font-size: clamp(16px, 1vw, 32px);
+        }
+
         :root {
-            --layout-width: 760px;   /* white body + header + footer column */
+            --layout-width: 47.5rem; /* 760px at the 16px root */
             --side-padding: 2rem;    /* 32px inner padding of the white body */
-            --image-width: 190px;    /* selfie column */
+            --image-width: 11.875rem; /* 190px selfie column */
             --image-gap: 2rem;       /* 32px gap between text and selfie */
-            --orb-width: 320px;      /* particles.gif — fixed px, spills below
+            --orb-width: 20rem;      /* 320px particles.gif — spills below
                                         the header and behind the body panel */
             --orb-offset-x: 0px;     /* nudge the orb left/right if needed */
-            --header-height: 120px;
-            --header-shift: 20px;    /* pushes name, orb and page links down */
+            --header-height: 7.5rem; /* 120px */
+            --header-shift: 1.25rem; /* 20px — pushes name, orb and page links down */
             --paper: #f6eed0;        /* warm off-white for the body panels */
             --header-text: #f7f3e8;  /* header text — off-white, less warm than the panel */
             --line: 1.35;
@@ -61,7 +71,7 @@
             z-index: 0;              /* keeps the orb behind the body panel */
             overflow: visible;       /* lets the orb spill past the header */
             padding: 1.5rem 0;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.05);
             height: var(--header-height);
             display: flex;
             align-items: center;
@@ -110,10 +120,10 @@
             font-synthesis: none;
             color: var(--header-text);
             text-shadow:
-                -1px -1px 0 #1e3a8a,
-                1px -1px 0 #1e3a8a,
-                -1px 1px 0 #1e3a8a,
-                1px 1px 0 #1e3a8a;
+                -0.0625rem -0.0625rem 0 #1e3a8a,
+                0.0625rem -0.0625rem 0 #1e3a8a,
+                -0.0625rem 0.0625rem 0 #1e3a8a,
+                0.0625rem 0.0625rem 0 #1e3a8a;
             white-space: nowrap;
         }
         .nav-link {
@@ -137,7 +147,7 @@
             border-radius: 0.75rem;
             padding-top: var(--side-padding);
             padding-bottom: var(--side-padding);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0.25rem 0.375rem rgba(0, 0, 0, 0.1);
             margin-bottom: 2rem;
             text-align: left;
         }
@@ -160,7 +170,7 @@
             width: calc(var(--layout-width)
                         - 2 * var(--side-padding)
                         - var(--image-gap)
-                        - var(--image-width));   /* 474px */
+                        - var(--image-width));   /* 474px at the 16px root */
             flex: 0 0 auto;
             text-align: left;
         }
@@ -199,7 +209,7 @@
         .quote {
             font-style: italic;
             color: #64748b;
-            border-left: 4px solid #93c5fd;
+            border-left: 0.25rem solid #93c5fd;
             padding-left: 1rem;
             margin-bottom: 1rem;
             text-align: left;
@@ -208,13 +218,20 @@
             margin-bottom: 1rem;
             text-align: left;
         }
+        .publication-entry a {
+            overflow-wrap: anywhere;
+        }
 
         /* =============================================================
            MOBILE: touch devices only (< 760px AND a coarse
-           pointer). A narrow desktop window keeps the fixed 760px
+           pointer). A narrow desktop window keeps the 760px
            layout and scrolls horizontally, as before.
            ============================================================= */
         @media (max-width: 759px) and (pointer: coarse) {
+            html {
+                font-size: 16px; /* phones stay on the design size */
+            }
+
             body {
                 min-width: 0;        /* release the fixed 760px floor */
             }
@@ -315,7 +332,7 @@
             </div>
 
             <div class="under-examples text-lg">
-                I'm interested in the nature of structure in the mind. How is it represented? In what format is it stored? Over what units is it computed? 
+                I'm interested in the nature of structure in the mind. How is it represented? In what format is it stored? Over what units is it computed?
                 <div class="paragraph-gap"></div>
                 My long-term research program aims to explore structure representations as a domain-general phenomenon.
             </div>
